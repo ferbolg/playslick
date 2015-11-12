@@ -1,6 +1,6 @@
-name := "activator-play-slick"
+name := "play"
 
-version := "1.0-SNAPSHOT"
+version := ""
 
 scalaVersion := "2.11.5" // or "2.10.4"
 
