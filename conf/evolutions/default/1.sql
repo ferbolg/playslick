@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table "CAT" ("name" VARCHAR NOT NULL PRIMARY KEY,"color" VARCHAR NOT NULL);
+create table CAT (name TEXT NOT NULL, color TEXT NOT NULL);
 
 # --- !Downs
 
