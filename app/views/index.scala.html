@@ -1,19 +1,20 @@
-@(cats: List[Cat])
+@(persons: List[Person])
 
-@main("Cat database") {
-  <h2>Insert a kitty cat here:</h2>
+@main("Address book") {
+  <h2>Insert a person here:</h2>
 
   <form action="/insert" method="POST">
-    <input name="name" type="text" placeholder="name your feline friend"/>
-    <input name="color" type="text" placeholder="enter the color of this kitty cat"/>
+    <input name="name" type="text" placeholder="Enter friend's name"/>
+    <input name="surname" type="text" placeholder="Enter friend's surname"/>
+    <input name="email" type="text" placeholder="Enter friend's email"/>
     <input type="submit"/>
   </form>
 
-  <h2>Previously inserted cats:</h2>
+  <h2>Previously inserted persons:</h2>
   <table>
-    <tr><th>Name</th><th>Color</th></tr>
-    @for(c <- cats){ 
-    <tr><td>@c.name</td><td>@c.color</td></tr>
+    <tr><th>Name</th><th>Surname</th><th>E-mail</th></tr>
+    @for(p <- persons){
+    <tr><td>@p.name</td><td>@p.surname</td><td>@p.email</td></tr>
     }
   </table>
 

@@ -15,37 +15,38 @@ import play.api.libs.json.Json._
 object Application extends Controller{
 
   //create an instance of the table
-  val cats = TableQuery[CatsTable] //see a way to architect your app in the computers-database-slick sample  
+  val persons = TableQuery[PersonsTable] //see a way to architect your app in the computers-database-slick sample
 
   //JSON read/write macro
-  implicit val catFormat = Json.format[Cat]
+  implicit val personFormat = Json.format[Person]
 
   def index = DBAction { implicit rs =>
-    Ok(views.html.index(cats.list))
+    Ok(views.html.index(persons.list))
   }
 
-  val catForm = Form(
+  val personForm = Form(
     mapping(
       "name" -> text(),
-      "color" -> text()
-    )(Cat.apply)(Cat.unapply)
+      "surname" -> text(),
+      "email" -> text()
+    )(Person.apply)(Person.unapply)
   )
 
   def insert = DBAction { implicit rs =>
-    val cat = catForm.bindFromRequest.get
-    cats.insert(cat)
+    val person = personForm.bindFromRequest.get
+    persons.insert(person)
 
     Redirect(routes.Application.index)
   }
 
   def jsonFindAll = DBAction { implicit rs =>
-    Ok(toJson(cats.list))
+    Ok(toJson(persons.list))
   }
 
   def jsonInsert = DBAction(parse.json) { implicit rs =>
-    rs.request.body.validate[Cat].map { cat =>
-        cats.insert(cat)
-        Ok(toJson(cat))
+    rs.request.body.validate[Person].map { person =>
+        persons.insert(person)
+        Ok(toJson(person))
     }.getOrElse(BadRequest("invalid json"))    
   }
   

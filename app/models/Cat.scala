@@ -2,14 +2,16 @@ package models
 
 import play.api.db.slick.Config.driver.simple._
 
-case class Cat(name: String, color: String)
+case class Person(name: String,surname: String, email: String)
 
 /* Table mapping
  */
-class CatsTable(tag: Tag) extends Table[Cat](tag, "CAT") {
+class PersonsTable(tag: Tag) extends Table[Person](tag, "Person") {
 
-  def name = column[String]("name", O.PrimaryKey)
-  def color = column[String]("color", O.NotNull)
+  def name = column[String]("name")
+  def surname = column[String]("surname")
+  def email = column[String]("color", O.NotNull)
+  def pk = primaryKey("pk_person", (name, surname))
 
-  def * = (name, color) <> (Cat.tupled, Cat.unapply _)
+  def * = (name,surname, email) <> (Person.tupled, Person.unapply _)
 }
