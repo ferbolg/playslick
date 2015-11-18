@@ -3,11 +3,11 @@
 
 # --- !Ups
 
-create table "Person" ("name" TEXT NOT NULL,"surname" TEXT NOT NULL,"color" TEXT NOT NULL);
-alter table "Person" add constraint "pk_person" primary key("name","surname");
+create table Person (name VARCHAR(30) NOT NULL,surname VARCHAR(30) NOT NULL,email VARCHAR(30) NOT NULL);
+alter table Person add constraint pk_person primary key(name,surname);
 
 # --- !Downs
 
-alter table "Person" drop constraint "pk_person";
-drop table "Person";
+alter table Person drop constraint pk_person;
+drop table Person;
 
