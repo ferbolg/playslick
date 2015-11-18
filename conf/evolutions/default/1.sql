@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table "Person" ("name" VARCHAR NOT NULL,"surname" VARCHAR NOT NULL,"color" VARCHAR NOT NULL);
+create table "Person" ("name" TEXT NOT NULL,"surname" TEXT NOT NULL,"color" TEXT NOT NULL);
 alter table "Person" add constraint "pk_person" primary key("name","surname");
 
 # --- !Downs
